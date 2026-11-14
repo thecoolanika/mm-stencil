@@ -142,6 +142,6 @@ int main(void) {
         fprintf(stderr, "%d assignment test(s) failed\n", failures);
         return 1;
     }
-    puts("All HW4 buddy allocator scenarios passed");
+    puts("All buddy allocator scenarios passed");
     return 0;
 }
