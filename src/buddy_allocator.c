@@ -8,8 +8,6 @@
 #include <stddef.h>
 #include <stdint.h>
 
-// mem.h leaves this commented out
-long mem_size;
 // 4k, 8k, 16k, 32k, 64k
 #define NUM_ORDERS 5
 

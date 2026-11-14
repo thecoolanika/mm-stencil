@@ -34,5 +34,7 @@ int mem_init()
         return -1;
     }
 
+    mem_size = size;
+
     return 0;
 }

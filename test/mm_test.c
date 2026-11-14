@@ -7,7 +7,6 @@
 #define MEMORY_BYTES (2L * 1024 * 1024)
 #define MAX_TEST_BLOCKS 128
 
-long mem_size;
 static int failures;
 
 #define CHECK(condition, message) do {                                      \
