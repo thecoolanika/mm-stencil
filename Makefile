@@ -21,3 +21,8 @@ mm: $(UTILS) $(ALLOCS)
 
 clean:
 	rm -rf bin/*
+
+mm_test:
+	$(CC) $(FLAGS) $(INCLUDE) -Dpage_alloc_n=slab_page_alloc_n -Dpage_free_n=slab_page_free_n -c src/slab_allocator.c -o bin/slab_renamed.o
+	$(CC) $(FLAGS) $(INCLUDE) test/mm_test.c src/buddy_allocator.c bin/slab_renamed.o sys/mem/mem.c util/spinlock.c -o bin/mm_test
+	./bin/mm_test
