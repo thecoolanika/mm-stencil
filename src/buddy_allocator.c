@@ -82,19 +82,6 @@ static void release_block(int index, uintptr_t addr) {
     }
 }
 
-
-/*
- * TODO: implement me!
- *
- * Hints:
- *   - we need to construct the free list, how many lists should reside in
- *     the structure?
- *   - to allocate the "chunks" and the free list, we need to reserve space in
- *     memory as a slab... how big will these components be?
- *   - once we have allocated space for the "mm" subsystem components, the
- *     amount of free space in memory has changed... bare this in mind when
- *     constructing your metadata!
- */
 void buddy_init() {
     slab_init(); 
     spinlock_init(&mm_buddy_mutex);
@@ -138,13 +125,6 @@ void buddy_init() {
     }
 }
 
-/*
- * TODO: implement me!
- *
- * Hints:
- *   - given a size, how do we know where to allocate from?
- *   - if we don't have any available chunks, how do we find another one?
- */
 void *buddy_obj_alloc(long size) {
     // ignore a size this allocator cannot represent as one chunk
     if (size <= 0 || size > MAX_CHUNK_SIZE)
@@ -199,13 +179,6 @@ void *buddy_obj_alloc(long size) {
     return addr;
 }
 
-/*
- * TODO: implement me!
- *
- * Hint: this function should handle the inverse cases of the "alloc" function!
- *       if there are cases that need to be handled in that function, what
- *       would the inverse cases look like?
- */
 void buddy_obj_free(long size, void *obj) {
     uintptr_t addr, block_bytes;
     int index = 0;
@@ -235,12 +208,6 @@ void buddy_obj_free(long size, void *obj) {
     spinlock_unlock(&mm_buddy_mutex);
 }
 
-/*
- * TODO: implement me!
- *
- * Hint: this function behaves similar to "obj_alloc" but what happens if
- *       npages is larger than MAX_CHUNK_SIZE?
- */
 void *page_alloc_n(int npages) {
     if (npages <= 0)
         return NULL;
@@ -303,11 +270,7 @@ void *page_alloc_n(int npages) {
     return NULL;
 }
 
-/*
- * TODO: implement me!
- *
- * Hint: this function should handle the inverse case of the "alloc" function!
- */
+
 void page_free_n(void *ptr, int npages) {
     long max_pages = MAX_CHUNK_SIZE / PAGE_SIZE;
 
